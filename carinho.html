@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Pagamento</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="carinho.js"></script>
+
+</head>
+<body>
+    <div class="payment-container">
+        <h1>Detalhes de Pagamento</h1>
+    
+        <!-- Exibe detalhes do carrinho usando JavaScript -->
+        <div id="cartDetails"></div>
+    
+        <form action="process_payment" method="post">
+            <label for="card_number">Número do Cartão:</label>
+            <input type="text" id="card_number" name="card_number" placeholder="**** **** **** ****" required>
+    
+            <label for="expiry_date">Data de Expiração:</label>
+            <input type="text" id="expiry_date" name="expiry_date" placeholder="MM/YY" required>
+    
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" placeholder="***" required>
+    
+            <button type="submit">Pagar</button>
+        </form>
+      </div>
+    
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Recupera os detalhes do carrinho da URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const cartDetails = urlParams.get('cart_details');
+    
+            // Converte a string de detalhes do carrinho de volta para um objeto
+            const cartItems = JSON.parse(atob(cartDetails));
+    
+            // Exibe os detalhes do carrinho
+            const cartDetailsContainer = document.getElementById('cartDetails');
+            cartItems.forEach(item => {
+                const itemElement = document.createElement('p');
+                itemElement.textContent = `${item.name} - Quantidade: ${item.quantity} - Preço: R$ ${item.price.toFixed(2)}`;
+                cartDetailsContainer.appendChild(itemElement);
+            });
+        });
+      </script>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.payment-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 8px;
+}
+
+input {
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #4eb060;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a556;
+}
+
+</style>
+</body>
+</html>

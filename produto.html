@@ -1,0 +1,301 @@
+  <!--doctype html-->
+  <html>
+    <html lang="PT-BR"></html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--==Title==================================-->
+    <title>Vida Saudavel</title>
+    <!--==Stylesheet=============================-->
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="banner.css"/>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!--==Fav-icon===============================-->
+    <link rel="shortcut icon" href="images/fav-icon.png"/>
+    <!--==Using-Font-Awesome=====================-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <!--==Import-Font-Family======================-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!--==Navigation================================-->
+        <nav class="navigation" id="navbar">
+            <!--logo-------->
+            <a href="index.html" class="logo">
+              <img alt="apple" src="Logo---Vida-Saudavel-e-CIA.png">
+                <span>V</span>ida Saudavel
+            </a>
+            <!--menu-btn---->
+            <input type="checkbox" class="menu-btn" id="menu-btn">
+            <label for="menu-btn" class="menu-icon">
+                <span class="nav-icon"></span>
+            </label>
+            <!--menu-------->
+            <ul class="menu">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="k.html">Categorias</a></li>
+                <li><a href="#popular-bundle-pack">Receitas</a></li>
+                <li><a href="#download-app">App</a></li>
+            </ul>
+            <!--right-nav-(cart-like)-->
+            <div class="right-nav">
+                <!--like----->
+                <a href="#" class="like">
+                    <i class="far fa-heart"></i>
+                    <span>0</span>
+                </a>
+                <!--cart----->
+                <a href="#" class="cart" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="contadorCarrinho">0</span>
+                </a>
+<!-- Dropdown do Carrinho -->
+<div id="cartDropdown" class="cart-dropdown">
+    <ul id="cartItemList"></ul>
+    <p>Total: R$ <span id="cartTotal">0.00</span></p>
+    <button onclick="checkout()">Finalizar Compra</button>
+    <button onclick="clearCart()" class="clear-cart-button">Limpar Carrinho</button>
+</div>
+
+
+        </nav>
+        <!--nav-end--------------------->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background-color: #fff;
+            border-radius: 8px;
+        }
+
+        .mosaico {
+            flex: 2;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            overflow: hidden;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        .imagem {
+            overflow: hidden;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .imagem img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .imagem img:hover {
+            transform: scale(1.1);
+        }
+
+        .detalhes {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .diretorio {
+            text-align: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        h2, p {
+            margin: 0;
+            color: #333;
+        }
+
+        .tamanhos {
+            margin-top: 20px;
+        }
+
+        .tamanhos label {
+            margin-right: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .quantidade {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .quantidade label {
+            display: block;
+            margin-right: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .quantidade input[type="number"] {
+            width: 50px;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .preco {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .frete {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .avaliacao {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+
+        .avaliacao label {
+            margin-right: 10px;
+        }
+
+        .estrela {
+            display: inline-block;
+            font-size: 24px;
+            color: #ffcc00;
+            cursor: pointer;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 15px;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .descricao {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="mosaico">
+            <div class="imagem">
+                <img src="img/Noite-removebg-preview.png" alt="Nike Product 1">
+            </div>
+            <div class="imagem">
+                <img src="img/Noite-removebg-preview.png" alt="Nike Product 2">
+            </div>
+            <div class="imagem">
+                <img src="img/Noite-removebg-preview.png" alt="Nike Product 3">
+            </div>
+            <div class="imagem">
+                <img src="img/Noite-removebg-preview.png" alt="Nike Product 4">
+            </div>
+        </div>
+
+        <div class="detalhes">
+            <div class="diretorio">
+                Frutas
+            </div>
+            <h2>Produto</h2>
+
+            <div class="preco">
+                Preço: R$ 99,99
+            </div>
+
+
+            <div class="quantidade">
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidade" name="quantidade" value="1" min="1">
+            </div>
+
+            <div class="frete">
+                Calcule o frete: <input type="text" placeholder="Informe o CEP">
+            </div>
+
+            <div class="avaliacao">
+                <label for="avaliacao">Avaliação:</label>
+                <div class="estrela" onclick="avaliar(1)">★</div>
+                <div class="estrela" onclick="avaliar(2)">★</div>
+                <div class="estrela" onclick="avaliar(3)">★</div>
+                <div class="estrela" onclick="avaliar(4)">★</div>
+                <div class="estrela" onclick="avaliar(5)">★</div>
+            </div>
+
+            <button onclick="comprar()">Comprar</button>
+
+            <p class="descricao">Descrição do produto: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac justo nec urna facilisis congue. Sed euismod diam eu neque varius, eu accumsan nunc tincidunt.</p>
+        </div>
+    </div>
+
+    <script>
+        function comprar() {
+            var tamanhosSelecionados = [];
+            var checkboxes = document.getElementsByName("tamanho");
+            
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    tamanhosSelecionados.push(checkbox.value);
+                }
+            });
+
+            var quantidade = document.getElementById("quantidade").value;
+
+            alert("Produto comprado! Tamanhos selecionados: " + tamanhosSelecionados.join(", ") + ". Quantidade: " + quantidade);
+        }
+
+        function avaliar(quantidadeEstrelas) {
+            alert("Avaliação: " + quantidadeEstrelas + " estrelas");
+        }
+    </script>
+
+</body>
+</html>

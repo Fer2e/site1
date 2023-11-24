@@ -45,6 +45,7 @@ background-color:#40aa54;}
   padding: 30px;
   max-width: 1070px;
   width: 100%;
+  z-index: 1;
   margin: auto;
 }
 .menu{

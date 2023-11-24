@@ -57,9 +57,6 @@
 
  /* Media query para ajustar o layout em telas menores */
  @media screen and (max-width: 600px) {
-    .logo {
-
-    }
 
     .logo img {
         margin-right: 0; /* Remove o espaço à direita da imagem da logo em telas menores */
@@ -67,4 +64,138 @@
         width: 20px;
         height: 20px;
     }
+
 }
+
+@media(max-width:800px){
+    #banner{
+        display: flex;
+        justify-content: center;
+        flex-direction: column-reverse;
+        height: auto;
+        padding: 20px;
+    }
+    #banner-text,
+    #banner-img{
+        height: auto;
+        margin: 0px;
+        padding: 0px;
+    }
+}
+@media(max-width:724){
+    
+}
+
+
+
+.navigation {
+    background-color: transparent;
+    transition: background-color 0.1s ease-in-out;
+}
+
+.navigation.fixed {
+    position: fixed;
+    top: 0;
+    max-width: 100%;
+    max-height: 40%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+ 
+.cart-btn {
+    border: none;
+    cursor: pointer;
+    /* Adicione outros estilos conforme necessário */
+}
+
+
+
+/* Adicione estilos para o dropdown do carrinho */
+.cart-dropdown {
+    max-height: 300px; /* Defina a altura máxima do carrinho, ajuste conforme necessário */
+    overflow-y: auto; /* Adiciona a rolagem vertical quando necessário */
+    display: none;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    width: 330px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 10px;
+}
+
+/* Adicione estilos para cada item no carrinho */
+.cart-dropdown li {
+    list-style: none;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+}
+
+.cart-dropdown li:last-child {
+    border-bottom: none; /* Remove a borda inferior do último item */
+}
+
+.cart-dropdown img {
+    max-width: 50px; /* Define a largura máxima da imagem */
+    margin-right: 10px;
+}
+
+/* Adicione estilos para o botão de remover */
+.cart-dropdown button.remove-button {
+    background-color: #d63434; /* Cor vermelha */
+    color: #fff; /* Cor do texto branco */
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+.cart-dropdown button.remove-button:hover {
+    background-color: #a52a2a; /* Cor mais escura no hover */
+}
+
+/* Adicione estilos para o botão "Limpar Carrinho" */
+.cart-dropdown button.clear-cart-button {
+    background-color: #d63434; /* Cor vermelha */
+    color: #fff; /* Cor do texto branco */
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 5px 10px;
+    margin-top: 10px;
+}
+
+.cart-dropdown button.clear-cart-button:hover {
+    background-color: #a52a2a; /* Cor mais escura no hover */
+}
+
+/* Outros estilos */
+.cart-dropdown p {
+    margin: 10px 0;
+}
+
+.cart-dropdown button.checkout-button {
+    background-color: #4eb060; /* Cor verde */
+    color: #fff; /* Cor do texto branco */
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+}
+
+.cart-dropdown button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+.cart-dropdown button.checkout-button:hover {
+    background-color: #408c4f; /* Cor mais escura no hover */
+}
+
+
